@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = '2.2.2'
   s.required_ruby_version = '>= 1.9.3'
   s.name = 'jekyll-plantuml'
-  s.version = '1.0'
+  s.version = '1.0.2'
   s.license = 'MIT'
   s.summary = "Jekyll PlantUML Automation"
   s.description = "PlantUML diagrams in Jekyll pages"
@@ -17,5 +17,5 @@ Gem::Specification.new do |s|
   s.test_files = s.files.grep(%r{^(test|spec|features)/})
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[README.md LICENSE.txt]
-  s.add_runtime_dependency('jekyll', '1.5.1')
+  s.add_runtime_dependency('jekyll', '>2.0')
 end

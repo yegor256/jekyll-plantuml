@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/jekyll-plantuml.svg)](http://badge.fury.io/rb/jekyll-plantuml)
+
 Install it first:
 
 ```
