@@ -1,2 +1,6 @@
-deploy: {script: bundle}
-architect: [yegor256, yegor256, davvd]
+deploy:
+  script: bundle
+architect:
+- yegor256
+- yegor256
+- davvd
