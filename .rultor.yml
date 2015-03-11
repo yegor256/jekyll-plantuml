@@ -8,3 +8,6 @@ architect:
 merge:
   commanders:
   - yegor256
+release:
+  commanders:
+  - yegor256
