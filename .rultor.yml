@@ -6,8 +6,7 @@ architect:
 - yegor256
 - davvd
 merge:
-  commanders:
-  - yegor256
+  commanders: []
 release:
   commanders:
   - yegor256
