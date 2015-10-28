@@ -1,7 +1,5 @@
 deploy:
   script: bundle
-  commanders:
-  - yegor256
 architect:
 - yegor256
 - davvd
