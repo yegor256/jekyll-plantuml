@@ -4,6 +4,7 @@ assets:
 release:
   script: |-
     env
+    ls -al /usr/share/rvm/scripts/rvm
     sudo bundle install
     rake
     rm -rf *.gem
