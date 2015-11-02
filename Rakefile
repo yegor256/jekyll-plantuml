@@ -20,35 +20,26 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require 'digest'
-require 'fileutils'
+require 'rubygems'
+require 'rake'
+require 'rdoc'
+require 'rake/clean'
 
-module Jekyll
-  class PlantumlBlock < Liquid::Block
-    def initialize(tag_name, markup, tokens)
-      super
-    end
-
-    def render(context)
-      site = context.registers[:site]
-      name = Digest::MD5.hexdigest(super)
-      if !File.exists?(File.join(site.dest, "uml/#{name}.svg"))
-        uml = File.join(site.source, "uml/#{name}.uml")
-        FileUtils.mkdir_p(File.dirname(uml))
-        File.open(uml, 'w') { |f|
-          f.write("@startuml\n")
-          f.write(super)
-          f.write("\n@enduml")
-        }
-        system("plantuml -tsvg #{uml}")
-        site.static_files << Jekyll::StaticFile.new(
-          site, site.source, 'uml', "#{name}.svg"
-        )
-      end
-      "<p><img src='/uml/#{name}.svg'
-        alt='PlantUML diagram' class='plantuml'/></p>"
-    end
-  end
+def name
+  @name ||= File.basename(Dir['*.gemspec'].first, '.*')
 end
 
-Liquid::Template.register_tag('plantuml', Jekyll::PlantumlBlock)
+def version
+  Gem::Specification.load(Dir['*.gemspec'].first).version
+end
+
+task default: [:clean]
+
+require 'rdoc/task'
+desc 'Build RDoc documentation'
+Rake::RDocTask.new do |rdoc|
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "#{name} #{version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
+end

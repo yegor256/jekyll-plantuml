@@ -1,3 +1,20 @@
+assets:
+  rubygems.yml: yegor256/home#assets/rubygems.yml
+  s3cfg: yegor256/home#assets/s3cfg
+release:
+  script: |-
+    sudo bundle install
+    rake
+    rm -rf *.gem
+    sed -i "s/1\.0\.snapshot/${tag}/g" lib/version.rb
+    git add lib/version.rb
+    git commit -m "version set to ${tag}"
+    gem build jekyll-plantuml.gemspec
+    chmod 0600 ../rubygems.yml
+    gem push *.gem --config-file ../rubygems.yml
+architect:
+- yegor256
+- davvd
 deploy:
-  script: |
-    bundle
+  script: |-
+    rake
