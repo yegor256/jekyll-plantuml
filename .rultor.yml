@@ -14,3 +14,6 @@ release:
     gem push *.gem --config-file ../rubygems.yml
 deploy:
   script: bundle
+architect:
+- yegor256
+- davvd
