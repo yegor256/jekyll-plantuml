@@ -13,5 +13,12 @@ release:
     gem build jekyll-plantuml.gemspec
     chmod 0600 ../rubygems.yml
     gem push *.gem --config-file ../rubygems.yml
+  commanders:
+  - yegor256
 deploy:
   script: bundle
+architect:
+- yegor256
+- davvd
+merge:
+  commanders: []
