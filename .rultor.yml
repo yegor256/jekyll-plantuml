@@ -3,6 +3,7 @@ assets:
   s3cfg: yegor256/home#assets/s3cfg
 release:
   script: |-
+    env
     sudo bundle install
     rake
     rm -rf *.gem
