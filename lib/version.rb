@@ -21,5 +21,5 @@
 # SOFTWARE.
 
 module PlantUML
-  VERSION = '1.0.snapshot'
+  VERSION = '1.2'
 end
