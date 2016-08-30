@@ -33,9 +33,9 @@ module Jekyll
     def render(context)
       site = context.registers[:site]
       name = Digest::MD5.hexdigest(super)
-      file = File.join(site.dest, "uml/#{name}.svg")
-      if !File.exists?(file)
+      if !File.exists?(File.join(site.dest, "uml/#{name}.svg"))
         uml = File.join(site.source, "uml/#{name}.uml")
+        svg = File.join(site.source, "uml/#{name}.svg")
         FileUtils.mkdir_p(File.dirname(uml))
         File.open(uml, 'w') { |f|
           f.write("@startuml\n")
@@ -46,7 +46,7 @@ module Jekyll
         site.static_files << Jekyll::StaticFile.new(
           site, site.source, 'uml', "#{name}.svg"
         )
-        puts "File #{file} created (#{File.size(file)} bytes)"
+        puts "File #{svg} created (#{File.size(svg)} bytes)"
       end
       "<p><img src='/uml/#{name}.svg' #{@html}
         alt='PlantUML SVG diagram' class='plantuml'/></p>"
