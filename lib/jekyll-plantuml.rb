@@ -27,6 +27,7 @@ module Jekyll
   class PlantumlBlock < Liquid::Block
     def initialize(tag_name, markup, tokens)
       super
+      @html = (markup or "").strip
     end
 
     def render(context)
@@ -45,7 +46,7 @@ module Jekyll
           site, site.source, 'uml', "#{name}.svg"
         )
       end
-      "<p><img src='/uml/#{name}.svg'
+      "<p><img src='/uml/#{name}.svg' #{@html}
         alt='PlantUML diagram' class='plantuml'/></p>"
     end
   end
