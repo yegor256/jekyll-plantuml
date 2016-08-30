@@ -27,13 +27,14 @@ module Jekyll
   class PlantumlBlock < Liquid::Block
     def initialize(tag_name, markup, tokens)
       super
-      @html = (markup or "").strip
+      @html = (markup or '').strip
     end
 
     def render(context)
       site = context.registers[:site]
       name = Digest::MD5.hexdigest(super)
-      if !File.exists?(File.join(site.dest, "uml/#{name}.svg"))
+      file = File.join(site.dest, "uml/#{name}.svg")
+      if !File.exists?(file)
         uml = File.join(site.source, "uml/#{name}.uml")
         FileUtils.mkdir_p(File.dirname(uml))
         File.open(uml, 'w') { |f|
@@ -45,6 +46,7 @@ module Jekyll
         site.static_files << Jekyll::StaticFile.new(
           site, site.source, 'uml', "#{name}.svg"
         )
+        puts "File #{file} created (#{File.size(file)} bytes)"
       end
       "<p><img src='/uml/#{name}.svg' #{@html}
         alt='PlantUML diagram' class='plantuml'/></p>"
