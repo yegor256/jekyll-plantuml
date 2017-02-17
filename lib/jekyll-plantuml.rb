@@ -36,17 +36,21 @@ module Jekyll
       if !File.exists?(File.join(site.dest, "uml/#{name}.svg"))
         uml = File.join(site.source, "uml/#{name}.uml")
         svg = File.join(site.source, "uml/#{name}.svg")
-        FileUtils.mkdir_p(File.dirname(uml))
-        File.open(uml, 'w') { |f|
-          f.write("@startuml\n")
-          f.write(super)
-          f.write("\n@enduml")
-        }
-        system("plantuml -tsvg #{uml}")
-        site.static_files << Jekyll::StaticFile.new(
-          site, site.source, 'uml', "#{name}.svg"
-        )
-        puts "File #{svg} created (#{File.size(svg)} bytes)"
+        if File.exists?(svg)
+          puts "File #{svg} already exists (#{File.size(svg)} bytes)"
+        else
+          FileUtils.mkdir_p(File.dirname(uml))
+          File.open(uml, 'w') { |f|
+            f.write("@startuml\n")
+            f.write(super)
+            f.write("\n@enduml")
+          }
+          system("plantuml -tsvg #{uml}")
+          site.static_files << Jekyll::StaticFile.new(
+            site, site.source, 'uml', "#{name}.svg"
+          )
+          puts "File #{svg} created (#{File.size(svg)} bytes)"
+        end
       end
       "<p><img src='/uml/#{name}.svg' #{@html}
         alt='PlantUML SVG diagram' class='plantuml'/></p>"
