@@ -1,5 +1,7 @@
 [![Gem Version](https://badge.fury.io/rb/jekyll-plantuml.svg)](http://badge.fury.io/rb/jekyll-plantuml)
 
+## Install Jekyll plugin
+
 Install it first:
 
 ```
@@ -27,9 +29,29 @@ to your `Gemfile`:
 gem "jekyll-plantuml"
 ```
 
+## Install plantuml.jar
+
 Then, make sure [PlantUML](http://plantuml.sourceforge.net/download.html)
 is installed on your build machine, and can
 be executed with a simple `plantuml` command.
+
+For Linux user, you could create a `/usr/bin/plantuml` with contents:
+
+```
+#!/bin/bash
+
+java -jar /home/user/Downloads/plantuml.jar "$1" "$2"
+```
+
+Remember to change the path to `plantuml.jar` file.
+
+Then set executable permission.
+
+```
+chmod +x /usr/bin/plantuml
+```
+
+## Test
 
 Now, it's time to create a diagram, in your Jekyll blog page:
 
