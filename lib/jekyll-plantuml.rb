@@ -33,7 +33,7 @@ module Jekyll
     def render(context)
       site = context.registers[:site]
       name = Digest::MD5.hexdigest(super)
-      if !File.exists?(File.join(site.dest, "uml/#{name}.svg"))
+      if !File.exists?(File.join(site.dest, "uml/#{name}.uml"))
         uml = File.join(site.source, "uml/#{name}.uml")
         svg = File.join(site.source, "uml/#{name}.svg")
         if File.exists?(svg)
