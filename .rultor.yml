@@ -3,7 +3,7 @@ assets:
   s3cfg: zerocracy/home#assets/s3cfg
 release:
   script: |-
-    sudo bundle install
+    bundle install
     rake
     rm -rf *.gem
     sed -i "s/1\.0\.snapshot/${tag}/g" lib/version.rb
