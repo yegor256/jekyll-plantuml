@@ -52,7 +52,7 @@ module Jekyll
           puts "File #{svg} created (#{File.size(svg)} bytes)"
         end
       end
-      "<p><img src='/uml/#{name}.svg' #{@html}
+      "<p><img src='#{site.baseurl}/uml/#{name}.svg' #{@html}
         alt='PlantUML SVG diagram' class='plantuml'/></p>"
     end
   end
