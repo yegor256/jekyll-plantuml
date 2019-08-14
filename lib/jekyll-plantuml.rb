@@ -45,7 +45,7 @@ module Jekyll
             f.write(super)
             f.write("\n@enduml")
           }
-          system("plantuml -tsvg #{uml}")
+          system("plantuml -tsvg #{uml}") or raise "PlantUML error: #{super}"
           site.static_files << Jekyll::StaticFile.new(
             site, site.source, 'uml', "#{name}.svg"
           )
