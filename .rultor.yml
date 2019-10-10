@@ -1,10 +1,16 @@
 assets:
   rubygems.yml: yegor256/home#assets/rubygems.yml
   s3cfg: yegor256/home#assets/s3cfg
+install: |
+  export GEM_HOME=~/.ruby
+  export GEM_PATH=$GEM_HOME:$GEM_PATH
+  sudo apt-get -y update
+  sudo gem install pdd -v 0.20.5
+  bundle install
+  pdd -f /dev/null
 release:
   script: |-
-    bundle install
-    rake
+    bundle exec rake
     rm -rf *.gem
     sed -i "s/1\.0\.snapshot/${tag}/g" lib/version.rb
     git add lib/version.rb
@@ -12,12 +18,10 @@ release:
     gem build jekyll-plantuml.gemspec
     chmod 0600 ../rubygems.yml
     gem push *.gem --config-file ../rubygems.yml
-  commanders:
-  - yegor256
-deploy:
-  script: bundle
-architect:
-- yegor256
-- davvd
 merge:
-  commanders: []
+  script: |-
+    bundle exec rake
+deploy:
+  script: |-
+    echo "There is nothing to deploy"
+    exit -1
