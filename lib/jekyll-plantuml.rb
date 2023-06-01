@@ -33,10 +33,10 @@ module Jekyll
     def render(context)
       site = context.registers[:site]
       name = Digest::MD5.hexdigest(super)
-      if !File.exists?(File.join(site.dest, "uml/#{name}.svg"))
+      if !File.exist?(File.join(site.dest, "uml/#{name}.svg"))
         uml = File.join(site.source, "uml/#{name}.uml")
         svg = File.join(site.source, "uml/#{name}.svg")
-        if File.exists?(svg)
+        if File.exist?(svg)
           puts "File #{svg} already exists (#{File.size(svg)} bytes)"
         else
           FileUtils.mkdir_p(File.dirname(uml))
