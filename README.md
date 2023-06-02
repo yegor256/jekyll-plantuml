@@ -18,7 +18,7 @@ create a plugin file within your Jekyll project's `_plugins` directory:
 
 ```ruby
 # _plugins/plantuml-plugin.rb
-require "jekyll_plantuml"
+require "jekyll-plantuml"
 ```
 
 Highly recommend to use Bundler. If you're using it, add this line
