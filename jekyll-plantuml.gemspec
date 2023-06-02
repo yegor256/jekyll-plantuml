@@ -16,12 +16,11 @@ Gem::Specification.new do |s|
   s.description = "PlantUML diagrams in Jekyll pages"
   s.authors = ["Yegor Bugayenko"]
   s.email = 'yegor@tpc2.com'
-  s.homepage = 'http://github.com/yegor256/jekyll-plantuml'
+  s.homepage = 'https://github.com/yegor256/jekyll-plantuml'
   s.files = `git ls-files`.split($/)
   s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.test_files = s.files.grep(%r{^(test|spec|features)/})
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[README.md LICENSE.txt]
   s.add_runtime_dependency 'jekyll', '>2.0'
-  s.add_development_dependency 'rake', '12.0.0'
 end
