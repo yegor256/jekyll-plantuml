@@ -35,7 +35,7 @@ def version
   Gem::Specification.load(Dir['*.gemspec'].first).version
 end
 
-task default: %i[clean rubocop]
+task default: %i[clean rubocop copyright]
 
 require 'rdoc/task'
 desc 'Build RDoc documentation'
@@ -51,4 +51,12 @@ desc 'Run RuboCop on all directories'
 RuboCop::RakeTask.new(:rubocop) do |task|
   task.fail_on_error = true
   task.requires << 'rubocop-rspec'
+end
+
+task :copyright do
+  sh "grep -q -r '2014-#{Date.today.strftime('%Y')}' \
+    --include '*.rb' \
+    --include '*.txt' \
+    --include 'Rakefile' \
+    ."
 end
