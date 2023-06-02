@@ -28,6 +28,12 @@ to your `Gemfile`:
 gem "jekyll-plantuml"
 ```
 
+The plugin is compatible with 
+[Jekyll 3.9.3](https://jekyllrb.com/news/2023/01/29/jekyll-3-9-3-released/) and 
+[Jekyll 4.3.2](https://jekyllrb.com/news/2023/01/20/jekyll-4-3-2-released/). 
+You can find our integration tests, which prove the compatibility, 
+[here](https://github.com/yegor256/jekyll-plantuml/tree/master/test-jekylls).
+
 ## Install plantuml.jar
 
 Then, make sure [PlantUML](http://plantuml.sourceforge.net/download.html)
