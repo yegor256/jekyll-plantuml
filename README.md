@@ -1,8 +1,6 @@
 [![rake](https://github.com/yegor256/jekyll-plantuml/actions/workflows/rake.yml/badge.svg)](https://github.com/yegor256/jekyll-plantuml/actions/workflows/rake.yml)
 [![Gem Version](https://badge.fury.io/rb/jekyll-plantuml.svg)](http://badge.fury.io/rb/jekyll-plantuml)
 
-## Install Jekyll plugin
-
 Install it first:
 
 ```
