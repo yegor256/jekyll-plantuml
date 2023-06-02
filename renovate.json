@@ -2,5 +2,9 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
+  ],
+  "ignorePaths": [
+    "jekyll-tests/jekyll-3/Gemfile",
+    "jekyll-tests/jekyll-4/Gemfile"
   ]
 }
