@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # (The MIT License)
 #
 # Copyright (c) 2014-2019 Yegor Bugayenko
@@ -23,7 +25,12 @@
 require 'digest'
 require 'fileutils'
 
+# Jekyll main module.
+# Author:: Yegor Bugayenko (yegor256@gmail.com)
+# Copyright:: Copyright (c) 2014-2019 Yegor Bugayenko
+# License:: MIT
 module Jekyll
+  # The main class
   class PlantumlBlock < Liquid::Block
     def initialize(tag_name, markup, tokens)
       super
@@ -33,18 +40,18 @@ module Jekyll
     def render(context)
       site = context.registers[:site]
       name = Digest::MD5.hexdigest(super)
-      if !File.exist?(File.join(site.dest, "uml/#{name}.svg"))
+      unless File.exist?(File.join(site.dest, "uml/#{name}.svg"))
         uml = File.join(site.source, "uml/#{name}.uml")
         svg = File.join(site.source, "uml/#{name}.svg")
         if File.exist?(svg)
           puts "File #{svg} already exists (#{File.size(svg)} bytes)"
         else
           FileUtils.mkdir_p(File.dirname(uml))
-          File.open(uml, 'w') { |f|
+          File.open(uml, 'w') do |f|
             f.write("@startuml\n")
             f.write(super)
             f.write("\n@enduml")
-          }
+          end
           system("plantuml -tsvg #{uml}") or raise "PlantUML error: #{super}"
           site.static_files << Jekyll::StaticFile.new(
             site, site.source, 'uml', "#{name}.svg"

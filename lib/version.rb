@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # (The MIT License)
 #
 # Copyright (c) 2014-2019 Yegor Bugayenko

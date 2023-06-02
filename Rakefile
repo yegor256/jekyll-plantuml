@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # (The MIT License)
 #
 # Copyright (c) 2014-2019 Yegor Bugayenko
@@ -33,7 +35,7 @@ def version
   Gem::Specification.load(Dir['*.gemspec'].first).version
 end
 
-task default: [:clean, :rubocop]
+task default: %i[clean rubocop]
 
 require 'rdoc/task'
 desc 'Build RDoc documentation'

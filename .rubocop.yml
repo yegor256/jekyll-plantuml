@@ -11,3 +11,5 @@ Gemspec/RequiredRubyVersion:
   Enabled: false
 Metrics/MethodLength:
   Enabled: false
+Metrics/AbcSize:
+  Max: 30
