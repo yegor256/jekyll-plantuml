@@ -1,0 +1,13 @@
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'assets/**/*'
+  DisplayCopNames: true
+  TargetRubyVersion: 2.3
+  SuggestExtensions: false
+  NewCops: enable
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false

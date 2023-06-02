@@ -33,7 +33,7 @@ def version
   Gem::Specification.load(Dir['*.gemspec'].first).version
 end
 
-task default: [:clean]
+task default: [:clean, :rubocop]
 
 require 'rdoc/task'
 desc 'Build RDoc documentation'
@@ -42,4 +42,11 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = "#{name} #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+require 'rubocop/rake_task'
+desc 'Run RuboCop on all directories'
+RuboCop::RakeTask.new(:rubocop) do |task|
+  task.fail_on_error = true
+  task.requires << 'rubocop-rspec'
 end
