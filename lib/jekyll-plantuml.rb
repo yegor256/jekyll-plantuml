@@ -22,6 +22,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+require 'jekyll'
 require 'digest'
 require 'fileutils'
 
@@ -29,38 +30,35 @@ require 'fileutils'
 # Author:: Yegor Bugayenko (yegor256@gmail.com)
 # Copyright:: Copyright (c) 2014-2024 Yegor Bugayenko
 # License:: MIT
-module Jekyll
-  # The main class
-  class PlantumlBlock < Liquid::Block
-    def initialize(tag_name, markup, tokens)
-      super
-      @html = (markup or '').strip
-    end
+class Jekyll::PlantumlBlock < Liquid::Block
+  def initialize(tag_name, markup, tokens)
+    super
+    @html = (markup or '').strip
+  end
 
-    def render(context)
-      site = context.registers[:site]
-      name = Digest::MD5.hexdigest(super)
-      unless File.exist?(File.join(site.dest, "uml/#{name}.svg"))
-        uml = File.join(site.source, "uml/#{name}.uml")
-        svg = File.join(site.source, "uml/#{name}.svg")
-        if File.exist?(svg)
-          puts "File #{svg} already exists (#{File.size(svg)} bytes)"
-        else
-          FileUtils.mkdir_p(File.dirname(uml))
-          File.open(uml, 'w') do |f|
-            f.write("@startuml\n")
-            f.write(super)
-            f.write("\n@enduml")
-          end
-          system("plantuml -tsvg #{uml}") or raise "PlantUML error: #{super}"
-          site.static_files << Jekyll::StaticFile.new(
-            site, site.source, 'uml', "#{name}.svg"
-          )
-          puts "\nFile #{svg} created (#{File.size(svg)} bytes)"
+  def render(context)
+    site = context.registers[:site]
+    name = Digest::MD5.hexdigest(super)
+    unless File.exist?(File.join(site.dest, "uml/#{name}.svg"))
+      uml = File.join(site.source, "uml/#{name}.uml")
+      svg = File.join(site.source, "uml/#{name}.svg")
+      if File.exist?(svg)
+        puts "File #{svg} already exists (#{File.size(svg)} bytes)"
+      else
+        FileUtils.mkdir_p(File.dirname(uml))
+        File.open(uml, 'w') do |f|
+          f.write("@startuml\n")
+          f.write(super)
+          f.write("\n@enduml")
         end
+        system("plantuml -tsvg #{uml}") or raise "PlantUML error: #{super}"
+        site.static_files << Jekyll::StaticFile.new(
+          site, site.source, 'uml', "#{name}.svg"
+        )
+        puts "\nFile #{svg} created (#{File.size(svg)} bytes)"
       end
-      "<p><object data='#{site.baseurl}/uml/#{name}.svg' type='image/svg+xml' #{@html} class='plantuml'></object></p>"
     end
+    "<p><object data='#{site.baseurl}/uml/#{name}.svg' type='image/svg+xml' #{@html} class='plantuml'></object></p>"
   end
 end
 

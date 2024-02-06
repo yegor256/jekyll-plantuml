@@ -22,55 +22,28 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require 'rubygems'
-require 'rake'
-require 'rdoc'
-require 'rake/clean'
+require 'liquid'
+require 'tmpdir'
+require 'minitest/autorun'
+require_relative 'test_helper'
+require_relative '../lib/jekyll-plantuml'
 
-def name
-  @name ||= File.basename(Dir['*.gemspec'].first, '.*')
-end
-
-def version
-  Gem::Specification.load(Dir['*.gemspec'].first).version
-end
-
-task default: %i[clean test jekylls rubocop copyright]
-
-require 'rake/testtask'
-desc 'Run all unit tests'
-Rake::TestTask.new(:test) do |test|
-  Rake::Cleaner.cleanup_files(['coverage'])
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.warning = true
-  test.verbose = false
-end
-
-task :jekylls do
-  sh 'cd test-jekylls; make'
-end
-
-require 'rdoc/task'
-desc 'Build RDoc documentation'
-Rake::RDocTask.new do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "#{name} #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
-require 'rubocop/rake_task'
-desc 'Run RuboCop on all directories'
-RuboCop::RakeTask.new(:rubocop) do |task|
-  task.fail_on_error = true
-  task.requires << 'rubocop-rspec'
-end
-
-task :copyright do
-  sh "grep -q -r '2014-#{Date.today.strftime('%Y')}' \
-    --include '*.rb' \
-    --include '*.txt' \
-    --include 'Rakefile' \
-    ."
+# PlantumlBlock test.
+# Author:: Yegor Bugayenko (yegor256@gmail.com)
+# Copyright:: Copyright (c) 2023-2024 Yegor Bugayenko
+# License:: MIT
+class PlantumlBlockTest < Minitest::Test
+  def test_failure
+    Dir.mktmpdir 'test' do |dir|
+      template = Liquid::Template.parse("{% plantuml %}[A] -> [B]{% endplantuml %}")
+      config = {
+        'destination' => File.join(dir, 'dest'),
+        'source' => File.join(dir, 'source'),
+      }
+      context = Liquid::Context.new({}, {}, {site: Jekyll::Site.new(Jekyll.configuration(config))})
+      block = template.root.nodelist.first
+      output = block.render(context)
+      assert(output.start_with?('<p><object'))
+    end
+  end
 end
