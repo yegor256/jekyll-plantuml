@@ -1,5 +1,9 @@
+[![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/jekyll-plantuml)](http://www.rultor.com/p/yegor256/jekyll-plantuml)
+[![We recommend RubyMine](https://www.elegantobjects.org/rubymine.svg)](https://www.jetbrains.com/ruby/)
+
 [![rake](https://github.com/yegor256/jekyll-plantuml/actions/workflows/rake.yml/badge.svg)](https://github.com/yegor256/jekyll-plantuml/actions/workflows/rake.yml)
 [![Gem Version](https://badge.fury.io/rb/jekyll-plantuml.svg)](http://badge.fury.io/rb/jekyll-plantuml)
+[![Test Coverage](https://img.shields.io/codecov/c/github/yegor256/jekyll-plantuml.svg)](https://codecov.io/github/yegor256/jekyll-plantuml?branch=master)
 
 Install it first:
 
