@@ -24,4 +24,3 @@ $stdout.sync = true
 
 require 'simplecov'
 SimpleCov.start
-

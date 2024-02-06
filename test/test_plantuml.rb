@@ -25,7 +25,7 @@
 require 'liquid'
 require 'tmpdir'
 require 'minitest/autorun'
-require_relative 'test_helper'
+require_relative 'test__helper'
 require_relative '../lib/jekyll-plantuml'
 
 # PlantumlBlock test.
@@ -35,12 +35,12 @@ require_relative '../lib/jekyll-plantuml'
 class PlantumlBlockTest < Minitest::Test
   def test_failure
     Dir.mktmpdir 'test' do |dir|
-      template = Liquid::Template.parse("{% plantuml %}[A] -> [B]{% endplantuml %}")
+      template = Liquid::Template.parse('{% plantuml %}[A] -> [B]{% endplantuml %}')
       config = {
         'destination' => File.join(dir, 'dest'),
-        'source' => File.join(dir, 'source'),
+        'source' => File.join(dir, 'source')
       }
-      context = Liquid::Context.new({}, {}, {site: Jekyll::Site.new(Jekyll.configuration(config))})
+      context = Liquid::Context.new({}, {}, { site: Jekyll::Site.new(Jekyll.configuration(config)) })
       block = template.root.nodelist.first
       output = block.render(context)
       assert(output.start_with?('<p><object'))

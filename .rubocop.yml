@@ -15,3 +15,5 @@ Metrics/AbcSize:
   Max: 30
 Naming/FileName:
   Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
