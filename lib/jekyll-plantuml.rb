@@ -47,11 +47,7 @@ class Jekyll::PlantumlBlock < Liquid::Block
         puts "File #{svg} already exists (#{File.size(svg)} bytes)"
       else
         FileUtils.mkdir_p(File.dirname(uml))
-        File.open(uml, 'w') do |f|
-          f.write("@startuml\n")
-          f.write(body)
-          f.write("\n@enduml")
-        end
+        File.write(uml, ["@startuml\n", body, "\n@enduml"].join)
         unless system("plantuml -tsvg #{uml} 2>&1")
           raise "PlantUML failed to compile the following snippet (see logs above):\n#{body}\n"
         end
