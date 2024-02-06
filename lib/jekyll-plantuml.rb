@@ -52,7 +52,9 @@ class Jekyll::PlantumlBlock < Liquid::Block
           f.write(body)
           f.write("\n@enduml")
         end
-        system("plantuml -tsvg #{uml}") or raise "PlantUML error: #{body}"
+        unless system("plantuml -tsvg #{uml} 2>&1")
+          raise "PlantUML failed to compile the following snippet (see logs above):\n#{body}\n"
+        end
         site.static_files << Jekyll::StaticFile.new(
           site, site.source, 'uml', "#{name}.svg"
         )
