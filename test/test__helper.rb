@@ -24,3 +24,5 @@ $stdout.sync = true
 
 require 'simplecov'
 SimpleCov.start
+
+require 'minitest/autorun'
