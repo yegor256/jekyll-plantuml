@@ -8,7 +8,7 @@
 Install it first:
 
 ```
-gem install jekyll-plantuml
+$ gem install jekyll-plantuml
 ```
 
 With Jekyll 2, simply add the gem to your `_config.yml` gems list:
@@ -44,20 +44,21 @@ Then, make sure [PlantUML](http://plantuml.sourceforge.net/download.html)
 is installed on your build machine, and can
 be executed with a simple `plantuml` command.
 
-For Linux user, you could create a `/usr/bin/plantuml` with contents:
+On Ubuntu, just `apt-get install -y plantuml` should work.
+However, if it doesn't, you can create a `/usr/bin/plantuml` with the
+following content:
 
 ```
 #!/bin/bash
-
 java -jar /home/user/Downloads/plantuml.jar "$1" "$2"
 ```
 
-Remember to change the path to `plantuml.jar` file.
+Remember to change the path to the `plantuml.jar` file.
 
-Then set executable permission.
+Then, set the executable permission of the file:
 
 ```
-chmod +x /usr/bin/plantuml
+$ chmod +x /usr/bin/plantuml
 ```
 
 ## Test
@@ -74,3 +75,16 @@ Now, check [this blog post](http://www.yegor256.com/2014/06/01/aop-aspectj-java-
 the UML sequence diagram in it is auto-generated using exactly this plugin.
 The sources of the blog are available in [GitHub](https://github.com/yegor256/blog).
 
+## How to contribute
+
+Read [these guidelines](https://www.yegor256.com/2014/04/15/github-guidelines.html).
+Make sure you build is green before you contribute
+your pull request. You will need to have [Ruby](https://www.ruby-lang.org/en/) 2.3+ and
+[Bundler](https://bundler.io/) installed. Then:
+
+```
+$ bundle update
+$ bundle exec rake
+```
+
+If it's clean and you don't see any error messages, submit your pull request.
