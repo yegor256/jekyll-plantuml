@@ -38,7 +38,8 @@ class Jekyll::PlantumlBlock < Liquid::Block
 
   def render(context)
     site = context.registers[:site]
-    name = Digest::MD5.hexdigest(super)
+    body = super.to_s
+    name = Digest::MD5.hexdigest(body)
     unless File.exist?(File.join(site.dest, "uml/#{name}.svg"))
       uml = File.join(site.source, "uml/#{name}.uml")
       svg = File.join(site.source, "uml/#{name}.svg")
@@ -48,10 +49,10 @@ class Jekyll::PlantumlBlock < Liquid::Block
         FileUtils.mkdir_p(File.dirname(uml))
         File.open(uml, 'w') do |f|
           f.write("@startuml\n")
-          f.write(super)
+          f.write(body)
           f.write("\n@enduml")
         end
-        system("plantuml -tsvg #{uml}") or raise "PlantUML error: #{super}"
+        system("plantuml -tsvg #{uml}") or raise "PlantUML error: #{body}"
         site.static_files << Jekyll::StaticFile.new(
           site, site.source, 'uml', "#{name}.svg"
         )
