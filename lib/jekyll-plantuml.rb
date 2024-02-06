@@ -23,6 +23,7 @@
 # SOFTWARE.
 
 require 'jekyll'
+require 'liquid'
 require 'digest'
 require 'fileutils'
 
