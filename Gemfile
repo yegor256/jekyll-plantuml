@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 gemspec
 
-gem 'minitest', '5.21.1', require: false
+gem 'minitest', '5.22.0', require: false
 gem 'rake', '13.1.0', require: false
 gem 'rubocop', '1.60.2', require: false
 gem 'rubocop-rspec', '2.26.1', require: false
