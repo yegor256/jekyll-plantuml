@@ -56,7 +56,7 @@ module Jekyll
           site.static_files << Jekyll::StaticFile.new(
             site, site.source, 'uml', "#{name}.svg"
           )
-          puts "File #{svg} created (#{File.size(svg)} bytes)"
+          puts "\nFile #{svg} created (#{File.size(svg)} bytes)"
         end
       end
       "<p><object data='#{site.baseurl}/uml/#{name}.svg' type='image/svg+xml' #{@html} class='plantuml'></object></p>"
