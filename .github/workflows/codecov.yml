@@ -12,6 +12,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7
+      - run: sudo apt-get -y install plantuml
       - run: bundle update
       - run: bundle exec rake
       - uses: codecov/codecov-action@v4.0.0-beta.3
