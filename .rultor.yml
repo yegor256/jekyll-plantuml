@@ -5,7 +5,7 @@ assets:
 install: |
   pdd -f /dev/null
   bundle install --no-color
-  sudo apt-get -y install plantuml
+  sudo apt-get install --yes plantuml
 release:
   pre: false
   script: |-

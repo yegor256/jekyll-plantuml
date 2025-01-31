@@ -21,7 +21,7 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-      - run: sudo apt-get -y install plantuml
+      - run: sudo apt-get install --yes plantuml
       - run: bundle config set --global path "$(pwd)/vendor/bundle"
       - run: bundle install
       - run: bundle exec rake

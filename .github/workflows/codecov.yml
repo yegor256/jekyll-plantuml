@@ -13,7 +13,7 @@ jobs:
         with:
           ruby-version: 3.3
           bundler-cache: true
-      - run: sudo apt-get -y install plantuml
+      - run: sudo apt-get install --yes plantuml
       - run: bundle config set --global path "$(pwd)/vendor/bundle"
       - run: bundle install
       - run: bundle exec rake
