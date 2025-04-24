@@ -10,6 +10,12 @@ AllCops:
   TargetRubyVersion: 2.3
   SuggestExtensions: false
   NewCops: enable
+plugins:
+  - rubocop-rake
+  - rubocop-minitest
+  - rubocop-performance
+Minitest/EmptyLineBeforeAssertionMethods:
+  Enabled: false
 Gemspec/RequiredRubyVersion:
   Enabled: false
 Metrics/MethodLength:
@@ -22,7 +28,3 @@ Style/ClassAndModuleChildren:
   Enabled: false
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
-require:
-  - rubocop-rake
-  - rubocop-minitest
-  - rubocop-performance

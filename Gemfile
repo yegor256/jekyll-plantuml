@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
+# SPDX-FileCopyrightText: Copyright (c) 2014-2025 Yegor Bugayenko
+# SPDX-License-Identifier: MIT
+
 source 'https://rubygems.org'
 gemspec
 
+gem 'kramdown-parser-gfm', '1.1.0', require: false
 gem 'minitest', '~>5.25', require: false
 gem 'rake', '~>13.2', require: false
 gem 'rubocop', '~>1.64', require: false

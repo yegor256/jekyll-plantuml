@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Copyright (c) 2014-2025 Yegor Bugayenko
+# SPDX-License-Identifier: MIT
+
 .ONESHELL:
 .SHELLFLAGS: -e -o pipefail -c
 .PHONY: clean sa env lint
