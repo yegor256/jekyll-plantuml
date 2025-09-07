@@ -49,7 +49,7 @@ However, if it doesn't, you can create a `/usr/bin/plantuml` with the
 following content:
 
 ```
-#!/bin/bash
+#!/usr/bin/env bash
 java -jar /home/user/Downloads/plantuml.jar "$1" "$2"
 ```
 
