@@ -7,7 +7,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'kramdown-parser-gfm', '~>1.1', require: false
-gem 'minitest', '~>5.25', require: false
+gem 'minitest', '~>6.0', require: false
 gem 'minitest-reporters', '~>1.7', require: false
 gem 'rake', '~>13.2', require: false
 gem 'rubocop', '~>1.64', require: false
