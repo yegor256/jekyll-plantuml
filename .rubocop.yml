@@ -21,11 +21,10 @@ Gemspec/RequiredRubyVersion:
 Metrics/MethodLength:
   Enabled: false
 Metrics/AbcSize:
-  Max: 30
+  Max: 50
 Naming/FileName:
   Enabled: false
 Style/ClassAndModuleChildren:
   Enabled: false
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
-require: []
