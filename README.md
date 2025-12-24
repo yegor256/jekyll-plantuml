@@ -34,11 +34,10 @@ to your `Gemfile`:
 gem "jekyll-plantuml"
 ```
 
-The plugin is compatible with
-[Jekyll 3.9.3][jekyll-3] and
-[Jekyll 4.3.2][jekyll-4].
-You can find our integration tests, which prove the compatibility,
-[here][test-jekylls].
+The plugin is compatible with [Jekyll 3.9.3][jekyll-3]
+  and [Jekyll 4.3.2][jekyll-4].
+You can find our [integration tests][test-jekylls],
+  which prove the compatibility.
 
 ## Install plantuml.jar
 
