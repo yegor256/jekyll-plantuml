@@ -4,5 +4,5 @@
 # SPDX-License-Identifier: MIT
 
 module PlantUML
-  VERSION = '1.0.snapshot'
+  VERSION = '1.5.0'
 end
