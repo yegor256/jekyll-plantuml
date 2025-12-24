@@ -72,6 +72,12 @@ Now, it's time to create a diagram in your Jekyll blog page:
 {% endplantuml %}
 ```
 
+You can also include a file:
+
+```text
+{% plantuml_file foo.uml %}
+```
+
 Now, check [this blog post][blog-post]:
 the UML sequence diagram in it is auto-generated using exactly this plugin.
 The sources of the blog are available in [GitHub][blog-sources].

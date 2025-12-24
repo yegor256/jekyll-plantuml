@@ -26,6 +26,7 @@ path = [
     "**/*.txt",
     "**/*.vm",
     "**/CNAME",
+    "test/schema.puml",
     "**/Gemfile.lock",
     "Gemfile.lock",
     "README.md",
