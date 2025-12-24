@@ -6,7 +6,9 @@
 source 'https://rubygems.org'
 gemspec
 
+gem 'base64', '~>0.3', require: false
 gem 'kramdown-parser-gfm', '~>1.1', require: false
+gem 'logger', '~>1.7', require: false
 gem 'minitest', '~>6.0', require: false
 gem 'minitest-reporters', '~>1.7', require: false
 gem 'rake', '~>13.2', require: false
