@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# SPDX-FileCopyrightText: Copyright (c) 2014-2025 Yegor Bugayenko
+# SPDX-FileCopyrightText: Copyright (c) 2014-2026 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
 require 'jekyll'
@@ -11,7 +11,7 @@ require_relative 'jekyll-plantuml-file'
 
 # Jekyll main module.
 # Author:: Yegor Bugayenko (yegor256@gmail.com)
-# Copyright:: Copyright (c) 2014-2025 Yegor Bugayenko
+# Copyright:: Copyright (c) 2014-2026 Yegor Bugayenko
 # License:: MIT
 class Jekyll::PlantumlBlock < Liquid::Block
   def initialize(tag_name, markup, tokens)
