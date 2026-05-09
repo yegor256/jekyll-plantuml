@@ -31,9 +31,7 @@ class Jekyll::PlantumlBlock < Liquid::Block
       else
         FileUtils.mkdir_p(File.dirname(uml))
         File.write(uml, ["@startuml\n", body, "\n@enduml"].join)
-        unless system("plantuml -tsvg #{uml} 2>&1")
-          raise "PlantUML failed to compile the following snippet (see logs above):\n#{body}\n"
-        end
+        Jekyll::PlantumlSupport.run_plantuml(uml, body)
         site.static_files << Jekyll::StaticFile.new(
           site, site.source, 'uml', "#{name}.svg"
         )

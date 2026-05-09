@@ -7,6 +7,7 @@ require 'jekyll'
 require 'liquid'
 require 'digest'
 require 'fileutils'
+require_relative 'jekyll-plantuml-support'
 
 # Jekyll main module.
 # Author:: Yegor Bugayenko (yegor256@gmail.com)
@@ -33,9 +34,7 @@ class Jekyll::PlantumlFile < Liquid::Block
         uml = File.join(site.source, "uml/#{name}.uml")
         FileUtils.mkdir_p(File.dirname(uml))
         IO.copy_stream(full_file_name, uml)
-        unless system("plantuml -tsvg #{uml} 2>&1")
-          raise "PlantUML failed to compile the following snippet (see logs above):\n#{body}\n"
-        end
+        Jekyll::PlantumlSupport.run_plantuml(uml, body)
         site.static_files << Jekyll::StaticFile.new(
           site, site.source, 'uml', "#{name}.svg"
         )
