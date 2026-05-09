@@ -36,4 +36,30 @@ class PlantumlFileTest < Minitest::Test
       assert(output.start_with?('<p><object'))
     end
   end
+
+  def test_clear_error_when_plantuml_not_installed
+    schema_file = File.join(Dir.getwd, 'test/schema.puml')
+    Dir.mktmpdir 'test' do |dir|
+      template = Liquid::Template.parse('{% plantuml_file %}schema.puml{% endplantuml_file %}')
+      source_dir = File.join(dir, 'source')
+      target_file = File.join(source_dir, 'schema.puml')
+      FileUtils.mkdir_p(source_dir)
+      FileUtils.cp(schema_file, target_file)
+      config = {
+        'destination' => File.join(dir, 'dest'),
+        'source' => source_dir
+      }
+      context = Liquid::Context.new({}, {}, { site: Jekyll::Site.new(Jekyll.configuration(config)) })
+      block = template.root.nodelist.first
+      original_path = ENV.fetch('PATH', nil)
+      begin
+        ENV['PATH'] = File.join(dir, 'no-such-dir')
+        error = assert_raises(RuntimeError) { block.render(context) }
+        assert_match(/plantuml/i, error.message)
+        assert_match(/not (?:found|installed|on PATH|in PATH|available)/i, error.message)
+      ensure
+        ENV['PATH'] = original_path
+      end
+    end
+  end
 end
