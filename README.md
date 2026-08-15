@@ -27,11 +27,21 @@ create a plugin file within your Jekyll project's `_plugins` directory:
 require "jekyll-plantuml"
 ```
 
-We highly recommend using Bundler. If you're using it, add this line
-to your `Gemfile`:
+We highly recommend using Bundler. With Jekyll 3 and newer, put the gem
+in the `:jekyll_plugins` group so Jekyll loads the tag:
 
 ```ruby
-gem "jekyll-plantuml"
+group :jekyll_plugins do
+  gem "jekyll-plantuml"
+end
+```
+
+If you keep the gem outside that group, add it to your `_config.yml`
+plugins list instead:
+
+```yaml
+plugins:
+  - jekyll-plantuml
 ```
 
 The plugin is compatible with [Jekyll 3.9.3][jekyll-3]
