@@ -18,5 +18,5 @@ gem 'rubocop', '~>1.64', require: false
 gem 'rubocop-minitest', '>0', require: false
 gem 'rubocop-performance', '>0', require: false
 gem 'rubocop-rake', '>0', require: false
-gem 'simplecov', '~>0.22', require: false
+gem 'simplecov', '~>1.0', require: false
 gem 'simplecov-cobertura', '~>3.1', require: false
