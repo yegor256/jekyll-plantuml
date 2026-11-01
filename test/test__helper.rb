@@ -5,9 +5,10 @@
 
 $stdout.sync = true
 
+require 'coverage'
 require 'simplecov'
 require 'simplecov-cobertura'
-unless SimpleCov.running
+unless Coverage.running?
   SimpleCov.command_name('test')
   SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
     [
@@ -16,13 +17,11 @@ unless SimpleCov.running
     ]
   )
   SimpleCov.minimum_coverage 80
-  SimpleCov.minimum_coverage_by_file 80
+  SimpleCov.coverage(:line) { minimum 80, per: :file }
   SimpleCov.start do
-    add_filter 'test/'
-    add_filter 'vendor/'
-    add_filter 'target/'
-    track_files 'lib/**/*.rb'
-    track_files '*.rb'
+    skip 'test/'
+    skip 'vendor/'
+    skip 'target/'
   end
 end
 
