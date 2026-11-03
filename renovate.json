@@ -6,5 +6,7 @@
   "ignorePaths": [
     "jekyll-tests/jekyll-3/Gemfile",
     "jekyll-tests/jekyll-4/Gemfile"
-  ]
+  ],
+  "automerge": true,
+  "platformAutomerge": false
 }
