@@ -7,16 +7,16 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'base64', '~>0.3', require: false
-gem 'bigdecimal', '~>4.0', require: false
+gem 'bigdecimal', '~>4.1', require: false
 gem 'kramdown-parser-gfm', '~>1.1', require: false
 gem 'logger', '~>1.7', require: false
-gem 'minitest', '~>6.0', require: false
-gem 'minitest-reporters', '~>1.7', require: false
-gem 'rake', '~>13.2', require: false
-gem 'rdoc', '~>8.0', require: false
-gem 'rubocop', '~>1.64', require: false
+gem 'minitest', '~>6.1', require: false
+gem 'minitest-reporters', '~>1.8', require: false
+gem 'rake', '~>13.4', require: false
+gem 'rdoc', '~>8.1', require: false
+gem 'rubocop', '~>1.92', require: false
 gem 'rubocop-minitest', '>0', require: false
 gem 'rubocop-performance', '>0', require: false
 gem 'rubocop-rake', '>0', require: false
-gem 'simplecov', '~>1.0', require: false
+gem 'simplecov', '~>1.3', require: false
 gem 'simplecov-cobertura', '~>4.0', require: false
